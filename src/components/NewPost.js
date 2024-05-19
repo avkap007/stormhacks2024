@@ -1,11 +1,12 @@
 // src/components/NewPost.js
 import React, { useState, useContext } from 'react';
 import { PostContext } from './PostContext';
+import { useNavigate } from 'react-router-dom';
 
 function NewPost() {
-  console.log('NewPost component rendered'); // Add this line
   const [content, setContent] = useState('');
   const { addPost } = useContext(PostContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,6 +18,7 @@ function NewPost() {
       createdAt: new Date().toISOString(),
     });
     setContent('');
+    navigate('/');
   };
 
   return (

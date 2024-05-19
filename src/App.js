@@ -1,10 +1,13 @@
+// src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import PostList from './components/PostList';
 import NewPost from './components/NewPost';
 import { PostProvider } from './components/PostContext';
+import { Fab } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,11 +22,22 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const querySnapshot = await getDocs(collection(db, "users"));
-querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
-});
+
+// FAB component
+function FloatingButton() {
+  const navigate = useNavigate();
+
+  return (
+    <Fab
+      color="primary"
+      aria-label="add"
+      onClick={() => navigate('/new-post')}
+      style={{ position: 'fixed', bottom: 16, right: 16 }}
+    >
+      <AddIcon />
+    </Fab>
+  );
+}
 
 function App() {
   return (
@@ -33,9 +47,11 @@ function App() {
           <Route path="/" element={<PostList />} />
           <Route path="/new-post" element={<NewPost />} />
         </Routes>
+        <FloatingButton />
       </PostProvider>
     </Router>
   );
 }
 
 export default App;
+export { db };
