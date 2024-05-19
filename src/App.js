@@ -33,10 +33,10 @@ function App() {
       <PostProvider>
         <Routes>
           <Route path="/" element={<Maps />} />
-          {/* <Route path="/" element={<PostList />} />
-          <Route path="/new-post" element={<NewPost />} /> */}
+          <Route path="/" element={<PostList />} />
+          <Route path="/new-post" element={<NewPost />} />
         </Routes>
-        {/* <FloatingButton /> */}
+        <FloatingButton />
       </PostProvider>
     </Router>
   );
