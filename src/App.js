@@ -6,19 +6,32 @@ import NewPost from './components/NewPost';
 import { PostProvider } from './components/PostContext';
 import { Fab } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyB34WTdf4N7FinXWzxf3h-zXLbzipNmQjk",
+  authDomain: "sfu-stormhacks-2024.firebaseapp.com",
+  projectId: "sfu-stormhacks-2024",
+  storageBucket: "sfu-stormhacks-2024.appspot.com",
+  messagingSenderId: "356402525327",
+  appId: "1:356402525327:web:d5aa3a7c6437efc0346cfa"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// FAB component
 function FloatingButton() {
   const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate('/new-post');
-  };
 
   return (
     <Fab
       color="primary"
       aria-label="add"
-      onClick={handleClick}
+      onClick={() => navigate('/new-post')}
       style={{ position: 'fixed', bottom: 16, right: 16 }}
     >
       <AddIcon />
@@ -41,3 +54,4 @@ function App() {
 }
 
 export default App;
+export { db };
