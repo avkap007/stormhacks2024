@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import PostList from './components/PostList';
 import NewPost from './components/NewPost';
+import Maps from './components/Maps.js';
 import { PostProvider } from './components/PostContext';
 import { Fab } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -44,6 +45,7 @@ function App() {
     <Router>
       <PostProvider>
         <Routes>
+          <Route path="/" element={<Maps />} />
           <Route path="/" element={<PostList />} />
           <Route path="/new-post" element={<NewPost />} />
         </Routes>
