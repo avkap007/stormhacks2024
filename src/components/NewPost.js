@@ -16,6 +16,7 @@ function NewPost() {
       content,
       author: 'User1', // Example static user
       createdAt: new Date().toISOString(),
+      votes: 0
     });
     setContent('');
     navigate('/');
