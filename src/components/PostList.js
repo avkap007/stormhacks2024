@@ -1,10 +1,9 @@
+// src/components/PostList.js
 import React, { useContext } from 'react';
 import { PostContext } from './PostContext';
 
 function PostList() {
   const { posts } = useContext(PostContext);
-
-  console.log(posts); // Add this line to see the posts in the console
 
   return (
     <div>
